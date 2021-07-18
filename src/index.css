@@ -15,3 +15,18 @@ code {
 li {
   list-style: none;
 }
+
+label{
+  display: block;
+  margin: 10px;
+}
+
+input{
+  padding: 10px;
+}
+
+form button{
+  display: flex;
+  margin-top: 20px;
+  padding: 15px;
+}
