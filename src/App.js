@@ -1,18 +1,18 @@
 import React from "react";
 
+import { v4 as uuidv4 } from "uuid";
+
 import { Container } from "./components/Container/Container";
 import { ContactForm } from "./components/ContactForm/ContactForm";
 import { ContactList } from "./components/ContactList/ContactList";
-import { Filter } from "./components/Filter/Filter";
+import { Notification } from "./components/Notification/Notification";
+import { Input } from "./components/Input/Input";
+
+import {H1Styled, H2Styled} from "./App.styles"
 
 class App extends React.Component {
   state = {
-    contacts: [
-      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-    ],
+    contacts: [],
     filter: "",
   };
 
@@ -58,16 +58,30 @@ class App extends React.Component {
 
     return (
       <Container>
-        <h1>PhoneBook</h1>
-        <h2>Add contact</h2>
+        <H1Styled>PhoneBook</H1Styled>
+        <H2Styled>Add contact</H2Styled>
         <ContactForm onSubmit={this.addContact} />
 
-        <h2>Contacts</h2>
-        {this.state.contacts.length > 0 && (
-          <Filter value={this.state.filter} onChange={this.changeFilterValue} />
-        )}
+        <H2Styled>Contacts</H2Styled>
+        {this.state.contacts.length > 0 ? (
+          <>
+          {/* Filter */}
+            <Input
+              id={uuidv4()}
+              label={"Find contacts by name"}
+              placeholder={"Boris Britva"}
+              value={this.state.filter}
+              onChange={this.changeFilterValue}
+            />
 
-        <ContactList contacts={contacts} onRemoveContact={this.removeContact} />
+            <ContactList
+              contacts={contacts}
+              onRemoveContact={this.removeContact}
+            />
+          </>
+        ) : (
+          <Notification text={"You don`t have any contacts"} />
+        )}
       </Container>
     );
   }

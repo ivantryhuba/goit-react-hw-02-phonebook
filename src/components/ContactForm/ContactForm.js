@@ -2,14 +2,14 @@ import React from "react";
 
 import { v4 as uuidv4 } from "uuid";
 
+import { Input } from "../Input/Input";
+import { FormStyled, SubmitButtonStyled } from "./ContactForm.styles";
+
 export class ContactForm extends React.Component {
   state = {
     name: "",
     number: "",
   };
-
-  nameId = uuidv4();
-  numberId = uuidv4();
 
   handleInputValues = (evt) => {
     const { name, value } = evt.currentTarget;
@@ -37,35 +37,41 @@ export class ContactForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.submitForm}>
-        <label htmlFor={this.nameId}>Name</label>
-        <input
-          id={this.nameId}
-          type="text"
-          name="name"
-          placeholder="Enter name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+      <FormStyled onSubmit={this.submitForm}>
+        <Input
+          id={uuidv4()}
+          type={"text"}
+          label = {"Name"}
+          name={"name"}
+          placeholder={"Jason Born"}
+          pattern={"^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"}
           value={this.state.name}
           onChange={this.handleInputValues}
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-          required
+          title={
+            "Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          }
+          required={true}
         />
 
-        <label htmlFor={this.numberId}>Number</label>
-        <input
-          id={this.numberId}
-          type="tel"
-          name="number"
-          placeholder="Enter telephone"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+        <Input
+          id={uuidv4()}
+          type={"tel"}
+          label = {"Number"}
+          name={"number"}
+          placeholder={"+44-787-123-45-67"}
+          pattern={
+            "+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}"
+          }
           value={this.state.number}
           onChange={this.handleInputValues}
-          required
+          title={
+            "Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          }
+          required={true}
         />
 
-        <button type="submit">Add contact</button>
-      </form>
+        <SubmitButtonStyled type="submit">Add contact</SubmitButtonStyled>
+      </FormStyled>
     );
   }
 }

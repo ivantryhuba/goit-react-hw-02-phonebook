@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { ContainerStyled } from "./Container.styles";
+
 export const Container = ({children}) => {
   return (
-    <div>
+    <ContainerStyled>
       {children}
-    </div>
+    </ContainerStyled>
   );
 };
 
