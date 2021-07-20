@@ -70,6 +70,7 @@ class App extends React.Component {
               id={uuidv4()}
               label={"Find contacts by name"}
               placeholder={"Boris Britva"}
+              name={"search"}
               value={this.state.filter}
               onChange={this.changeFilterValue}
             />

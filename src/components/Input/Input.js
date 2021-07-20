@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { LabelStyled, InputStyled } from "./Input.styles";
+import { LabelStyled, InputStyled } from './Input.styles';
 
 export const Input = ({
   id,
@@ -9,11 +9,11 @@ export const Input = ({
   label,
   name,
   placeholder,
-  pattern,
   value,
   onChange,
   title,
   required,
+  ...allProps
 }) => {
   return (
     <>
@@ -22,8 +22,8 @@ export const Input = ({
         id={id}
         type={type}
         name={name}
+        {...allProps}
         placeholder={placeholder}
-        pattern={pattern}
         value={value}
         onChange={onChange}
         title={title}
@@ -34,11 +34,10 @@ export const Input = ({
 };
 
 Input.defaultProps = {
-  type: "text",
-  placeholder: "",
-  pattern: "",
-  title: "",
-  required:false
+  type: 'text',
+  placeholder: '',
+  title: '',
+  required: false,
 };
 
 Input.propTypes = {
@@ -47,7 +46,6 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  pattern: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string,
